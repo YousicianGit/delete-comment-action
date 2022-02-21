@@ -1,10 +1,11 @@
 'use strict';
 
+import { getInput } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
-const targetUserLogin = 'sonarcloud[bot]';
-const targetUserId = 39514782;
-const targetUserType = 'Bot';
+const targetUserLogin = getInput('userLogin');
+const targetUserId = getInput('userId');
+const targetUserType = getInput('usertype');
 const substrings = [
   '[0 Bugs]',
   '[0 Vulnerabilities]',

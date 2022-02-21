@@ -1,5 +1,18 @@
 name: delete-comments
 description: Delete uninformative SonarCloud PR comments
+inputs:
+  userId:
+    required: true
+    description: User id
+  userLogin:
+    required: false
+    default: 'sonarcloud[bot]'
+    description: User login, defaults to 'sonarcloud[bot]'
+  userType:
+    required: false
+    default: 'Bot'
+    description: User type, defaults to 'Bot'
+
 runs:
   using: composite
   steps:
@@ -24,3 +37,7 @@ runs:
   - name: Run action step
     run: node $GITHUB_ACTION_PATH/index.js
     shell: bash
+    env:
+      INPUT_USERID: ${{ inputs.userId }}
+      INPUT_USERLOGIN: ${{ inputs.userLogin }}
+      INPUT_USERTYPE: ${{ inputs.userType }}
