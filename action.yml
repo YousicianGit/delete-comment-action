@@ -1,0 +1,26 @@
+name: delete-comments
+description: Delete uninformative SonarCloud PR comments
+runs:
+  using: composite
+  steps:
+  # hashFiles() fails because package-lock.json is outside of WORKSPACE
+  - name: Get package-lock.json hash step
+    id: hash
+    run: echo "::set-output name=sha256::$(shasum --algorithm 256 $GITHUB_ACTION_PATH/package-lock.json | cut -d' ' -f1)"
+    shell: bash
+
+  - name: Cache node_modules step
+    id: cache
+    uses: actions/cache@v2
+    with:
+      path: ${{ github.action_path }}/node_modules
+      key: delete-comment-action-${{ steps.hash.outputs.sha256 }}
+
+  - name: Install dependencies step
+    if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+    run: cd $GITHUB_ACTION_PATH && npm ci --ignore-scripts
+    shell: bash
+
+  - name: Run action step
+    run: node $GITHUB_ACTION_PATH/index.js
+    shell: bash
