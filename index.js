@@ -7,12 +7,10 @@ const targetUserLogin = getInput('userLogin');
 const targetUserId = getInput('userId');
 const targetUserType = getInput('usertype');
 const substrings = [
-  '[0 Bugs]',
-  '[0 Vulnerabilities]',
+  '[0 New issues]',
   '[0 Security Hotspots]',
-  '[0 Code Smells]',
-  '[No Coverage information]',
-  '[No Duplication information]',
+  'No data about Coverage',
+  'No data about Duplication',
 ];
 
 const repo = context.repo; // is an object {owner: string; repo: string}
