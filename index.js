@@ -10,7 +10,6 @@ const substrings = [
   '[0 New issues]',
   '[0 Security Hotspots]',
   'No data about Coverage',
-  'No data about Duplication',
 ];
 
 const repo = context.repo; // is an object {owner: string; repo: string}
