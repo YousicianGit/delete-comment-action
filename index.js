@@ -8,8 +8,10 @@ const targetUserId = getInput('userId');
 const targetUserType = getInput('usertype');
 const substrings = [
   '[0 New issues]',
+  '[0 Accepted issues]',
   '[0 Security Hotspots]',
-  'No data about Coverage',
+  "passed-16px.png '') [0.0% Coverage on New Code",
+  "passed-16px.png '') [0.0% Duplication on New Code",
 ];
 
 const repo = context.repo; // is an object {owner: string; repo: string}
